@@ -8,12 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-
 public class Start extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(FXML_Location.EDIT.getPage());
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(FXML_Location.LIST.getPage());
         primaryStage.setTitle("IAD Notizprojekt V 1.0");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
