@@ -63,12 +63,12 @@ public class EditNotesCtrl extends BaseCtrl implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-                /*if(editNote !=null)
+                if(editNote !=null)
                         {
                         txtTitle.setText(editNote.getTitle());
                         txaDescription.setText(editNote.getDescription());
-                        saveBtn.setText("Update");
-                }*/ //nicht unbedingt nötig, nur für Änderung der Amzeige auf dem Speichernbutton
+                     // saveBtn.setText("Update");
+                } //nicht unbedingt nötig, nur für Änderung der Amzeige auf dem Speichernbutton
                     //hierzu muss der Button erst in FXML-Datei angelegt werden
 
     }

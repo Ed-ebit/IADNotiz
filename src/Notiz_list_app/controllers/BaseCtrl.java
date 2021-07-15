@@ -48,4 +48,16 @@ public class BaseCtrl {
         appStage.show();
 
     }
+
+    protected void navigateTO (Event event) throws IOException {
+
+
+            Parent root= FXMLLoader.load(FXML_Location.EDIT.getPage());
+            Stage stage = (Stage) (event).getScene().getWindow();
+            stage.hide();
+            stage.setScene(new Scene(root));
+            stage.show();
+    }
+
+
 }

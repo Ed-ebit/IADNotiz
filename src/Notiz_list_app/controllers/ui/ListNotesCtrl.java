@@ -7,16 +7,25 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListNotesCtrl extends BaseCtrl implements Initializable {
 
     private SelectionModel<Note> selectionModel;
+
+    @FXML
+    private MenuBar mnbListView;
 
     @FXML
     private TextField txtSearchNote;
@@ -40,9 +49,27 @@ public class ListNotesCtrl extends BaseCtrl implements Initializable {
     private TableColumn<?, ?> tbvDescription;
 
     @FXML
+    void onEditAndNew(ActionEvent event) throws IOException {
+
+        Parent root= FXMLLoader.load(FXML_Location.EDIT.getPage());
+        Stage stage = (Stage) ((Node)mnbListView).getScene().getWindow();
+        stage.hide();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        //navigateTO(event, FXML_Location.EDIT.getPage()); doesnt work
+
+    }
+
+    @FXML
     void onDeletNote(ActionEvent event) {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        var result = alert.showAndWait();
         //mit extra erstellter Methode getNoteItem:
-        if(getNoteItem()!=null){
+        if(getNoteItem()!=null && result.isPresent() && result.get() == ButtonType.OK){
+
             data.remove((getNoteItem()));
             selectionModel.clearSelection();
         }
@@ -98,6 +125,7 @@ public class ListNotesCtrl extends BaseCtrl implements Initializable {
 
         btnDeleteNote.disableProperty().bind(selectionModel.selectedItemProperty().isNull());
         btnEditNote.disableProperty().bind(selectionModel.selectedItemProperty().isNull());
+
 
 
     }
